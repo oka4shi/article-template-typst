@@ -9,8 +9,11 @@
   subtitle: "",
   body
 ) = {
+
+  set document(author: ("筑波大学情報学群 情報科学類 WORD 編集部"), title: title)
+
   set page(
-    paper: "a4",
+    paper: "jis-b5",
     margin: auto,
     binding: auto,
     header: context {
