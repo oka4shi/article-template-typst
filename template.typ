@@ -53,17 +53,11 @@
     leading: 1em,
     justify: true,
     linebreaks: auto,
-    first-line-indent: 1em,
+    first-line-indent: (
+      amount: 1em,
+      all: true,
+    ),
   )
-  
-  // 最初の段落が字下げされない問題を修正
-  // https://github.com/typst/typst/issues/311 が修正されるまではこれで対応
-  show selector(heading).or(figure): it => {
-    it
-    // 空の段落を入れる
-    par(text(size: 0pt, ""))
-    v(-1em)
-  }
 
   set heading(numbering: (..nums) => {
     if nums.pos().len() > 1 {
