@@ -17,7 +17,7 @@
 
   set page(
     paper: "jis-b5",
-    margin: auto,
+    margin: (x: 25mm, y: 29mm),
     binding: auto,
     header: context {
       set text(font: fonts.header, weight: "medium", lang: "ja")
@@ -50,7 +50,8 @@
   )
 
   set par(
-    leading: 1em,
+    leading: 1.1em,
+    spacing: 1.1em,
     justify: true,
     linebreaks: auto,
     first-line-indent: (
@@ -61,7 +62,8 @@
 
   set heading(numbering: (..nums) => {
     if nums.pos().len() > 1 {
-      nums.pos().slice(1).map(str).join(".") + " "
+      nums.pos().slice(1).map(str).join(".")
+      h(0.75em)
     }
   })
 
@@ -73,24 +75,23 @@
 
   show heading.where(level: 1): it => {
     pagebreak()
-    v(10pt)
+    v(2pt)
     align(center)[
-      #text(size: 17pt, it)
+      #text(size: 18pt, it)
     ]
     v(10pt)
   }
   show heading.where(level: 2): it => {
-      v(0.5em)
-      text(size: 13pt, it)
-      v(0.4em)
+      v(0.2em)
+      text(size: 15pt, it)
+      v(0.2em)
+  }
+  show heading.where(level: 3): it => {
+    text(size: 12pt, it)
   }
 
-  set list(indent: 2em)
-  show list: it => {
-    v(1em)
-    it
-    v(1em)
-  }
+  set list(indent: 2em, spacing: 1.1em)
+  show list: set block(spacing: 2em)
 
   body
   pagebreak()
@@ -118,14 +119,14 @@
 
 #let author(name, authormark: [文#h(1em)編集部#h(1em)]) = [
   #metadata(name) <author>
-  #align(right)[
-    #block[
-      #v(2em)
-      #text[
+  #align(right, 
+    block[
+      #v(1em)
+      #text(size: 10.5pt)[
         #authormark#name
       ]
-      #v(1em)
+      #v(1.4em)
     ]
-  ]
+  )
 ]
 
