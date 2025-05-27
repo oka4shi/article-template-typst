@@ -4,6 +4,17 @@
   main: ("Times New Roman", "Noto Serif", "Noto Serif CJK JP")
 )
 
+#let pageno = (page-numbering, display-page, actucal-page) => {
+  if (page-numbering == none) {
+    none
+  }
+  else if calc.odd(actucal-page) {
+    align(right, text(8pt, number-type: "old-style", numbering(page-numbering, display-page)))
+  } else {
+    align(left, text(8pt, number-type: "old-style", numbering(page-numbering, display-page)))
+  }
+}
+
 #let project(
   title: "",
   subtitle: "",
@@ -17,7 +28,7 @@
 
   set page(
     paper: "jis-b5",
-    margin: (x: 25mm, y: 29mm),
+    margin: (x: 25mm, top: 29mm, bottom: 15mm),
     binding: auto,
     header: context {
       set text(font: fonts.header, weight: "medium", lang: "ja")
@@ -40,6 +51,9 @@
           ]
         ]
       }
+    },
+    footer: context {
+      pageno(here().page-numbering(), counter(page).get().at(0), here().page())
     }
   )
 
@@ -63,7 +77,7 @@
   set heading(numbering: (..nums) => {
     if nums.pos().len() > 1 {
       nums.pos().slice(1).map(str).join(".")
-      h(0.75em)
+      h(0.55em)
     }
   })
 
@@ -75,19 +89,21 @@
 
   show heading.where(level: 1): it => {
     pagebreak()
-    v(2pt)
+    v(0.1em)
     align(center)[
       #text(size: 18pt, it)
     ]
-    v(10pt)
+    v(1em)
   }
   show heading.where(level: 2): it => {
-      v(0.2em)
-      text(size: 15pt, it)
-      v(0.2em)
+    v(0.1em)
+    text(size: 15pt, it)
+    v(0.1em)
   }
   show heading.where(level: 3): it => {
+    v(0.1em)
     text(size: 12pt, it)
+    v(0.1em)
   }
 
   set list(indent: 2em, spacing: 1.1em)
@@ -125,7 +141,7 @@
       #text(size: 10.5pt)[
         #authormark#name
       ]
-      #v(1.4em)
+      #v(1.6em)
     ]
   )
 ]
