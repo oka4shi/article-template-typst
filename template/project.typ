@@ -1,7 +1,11 @@
 #import "/template/utils.typ": page-setting, body-setting
+#import "/template/toc.typ": toc
+#import "/template/backcover.typ": backcover
 #import "@preview/cjk-unbreak:0.1.0": remove-cjk-break-space
 
 #let date-format = "[year]年[month repr:numerical padding:none]月[day padding:none]日"
+
+
 
 #let project(
   title: "",
@@ -21,25 +25,9 @@
   show: page-setting
   show: body-setting
 
-  body
-}
+  toc()
 
-#let toc() = context {
-  let elements = query(heading.where(level: 1, outlined: true))
-  for el in elements {
-    let metadatas = query(selector(<author>).after(el.location()))
-    let author = metadatas.first().value
-    link(el.location())[
-      #block(width: 100%)[
-        #el.body
-        #box(width: 1fr, repeat[．])
-        #text(style: "italic", author)
-        #box(width: 2em, inset: (left: 1em))[
-          #align(right)[
-            #el.location().page()
-          ]
-        ]
-      ]
-    ]
-  }
+  body
+
+  backcover()
 }

@@ -1,11 +1,7 @@
-#import "template/project.typ": project, toc
+#import "template/project.typ": project
 
 #show: project.with(
   title: "WORD xx号"
 )
-
-== 目次
-
-#toc()
 
 #include "articles/hinagata/main.typ"
