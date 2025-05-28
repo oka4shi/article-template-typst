@@ -1,25 +1,33 @@
 #import "/template/utils.typ": page-setting, body-setting
 #import "@preview/cjk-unbreak:0.1.0": remove-cjk-break-space
 
+#let date-format = "[year]年[month repr:numerical padding:none]月[day padding:none]日"
+
 #let project(
   title: "",
-  subtitle: "",
+  author: "筑波大学情報学群 情報科学類 WORD編集部",
+  edition-dates: (datetime.today(),),
+  keywords: (),
   body,
 ) = {
   set document(
-    author: "筑波大学情報学群 情報科学類 WORD編集部",
     title: title,
+    author: author.last(),
+    date: edition-dates.last(),
+    keywords: keywords,
+)
+
+  set page(
+    paper: "jis-b5",
+    margin: (x: 25mm, top: 29mm, bottom: 15mm),
+    binding: auto,
   )
 
   show: remove-cjk-break-space
   show: page-setting
   show: body-setting
 
-  set list(indent: 2em, spacing: 1.1em)
-  show list: set block(spacing: 2em)
-
   body
-  pagebreak()
 }
 
 #let toc() = context {
@@ -41,18 +49,3 @@
     ]
   }
 }
-
-#let author(name, authormark: [文#h(1em)編集部#h(1em)]) = [
-  #metadata(name) <author>
-  #align(
-    right,
-    block[
-      #v(1em)
-      #text(size: 10.5pt)[
-        #authormark#name
-      ]
-      #v(1.6em)
-    ],
-  )
-]
-

@@ -1,4 +1,4 @@
-#import "/template.typ": author
+#import "/template/article.typ": author
 
 #let ovalbox = body => [
   #h(0.2em)
@@ -9,6 +9,8 @@
 = 記事を執筆しよう
 
 #author("情報 太郎")
+
+// #set heading(offset: 1)
 
 == 環境を準備する
 
@@ -43,7 +45,8 @@ $ make
 // TODO
 ```
 
-このようになっていると思いますので、この「記事（サンプル）」と「裏表紙」というコメントの間に次のような書き込みをしましょう。
+このようになっていると思いますので、この「記事（サンプル）」と「裏表紙」という
+コメントの間に次のような書き込みをしましょう。
 
 ```
 // TODO

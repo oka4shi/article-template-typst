@@ -72,7 +72,6 @@
       all: true,
     )
   )
-
   set heading(
     numbering: (..nums) => {
       if nums.pos().len() > 1 {
@@ -103,6 +102,9 @@
   }
   show heading.where(level: 2): it => pad(y: 0.5em, text(size: 15pt, it))
   show heading.where(level: 3): it => pad(y: 0.5em, text(size: 12pt, it))
+
+  set list(indent: 2em, spacing: 1.1em)
+  show list: set block(spacing: 2em)
   
   rest
 }

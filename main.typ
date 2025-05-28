@@ -1,4 +1,4 @@
-#import "template.typ": project, toc
+#import "template/project.typ": project, toc
 
 #show: project.with(
   title: "WORD xx号"
