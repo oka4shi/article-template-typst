@@ -1,11 +1,10 @@
 #import "/template/utils.typ": page-setting, body-setting
 #import "/template/toc.typ": toc
+#import "/template/cover.typ": cover
 #import "/template/backcover.typ": backcover
 #import "@preview/cjk-unbreak:0.1.0": remove-cjk-break-space
 
 #let date-format = "[year]年[month repr:numerical padding:none]月[day padding:none]日"
-
-
 
 #let project(
   title: "",
@@ -25,8 +24,10 @@
   show: page-setting
   show: body-setting
 
+  cover()
   toc()
 
+  counter(page).update(1)
   body
 
   backcover()

@@ -1,6 +1,7 @@
 #let backcover() = {
   set page(
-    header: none
+    header: none,
+    footer: none
   )
   set par(first-line-indent: (amount: 0pt, all: false))
 

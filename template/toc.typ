@@ -1,4 +1,8 @@
 #let toc() = context {
+  set page(
+    header: none,
+    footer: none
+  )
   heading(level: 2, numbering: none, [目次])
 
   let elements = query(heading.where(level: 1, outlined: true))
@@ -18,4 +22,6 @@
       ]
     ]
   }
+
+  pagebreak(weak: true)
 }
