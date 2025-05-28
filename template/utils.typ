@@ -26,6 +26,7 @@
     paper: "jis-b5",
     margin: (x: 25mm, top: 29mm, bottom: 15mm),
     binding: auto,
+    numbering: "1",
     header: context {
       set par(first-line-indent: (amount: 0pt, all: false))
       set text(font: fonts.header, weight: "medium", lang: "ja")
@@ -90,7 +91,7 @@
     it
   }
   show heading.where(level: 1): it => {
-    pagebreak()
+    // pagebreak(weak: true)
     pad(
       top: 0.1em,
       bottom: 1em,

@@ -15,12 +15,6 @@
     author: author.last(),
     date: edition-dates.last(),
     keywords: keywords,
-)
-
-  set page(
-    paper: "jis-b5",
-    margin: (x: 25mm, top: 29mm, bottom: 15mm),
-    binding: auto,
   )
 
   show: remove-cjk-break-space
