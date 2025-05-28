@@ -5,3 +5,6 @@ compile:
 
 watch:
 	$(TYPST) watch --root ../../ main.typ main.pdf
+
+clean:
+	rm -rf *.pdf
