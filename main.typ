@@ -5,3 +5,5 @@
 )
 
 #include "articles/hinagata/main.typ"
+
+#include "articles/hinagata-markdown/main.typ"
