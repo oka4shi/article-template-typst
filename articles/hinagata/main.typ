@@ -1,4 +1,4 @@
-#import "/template.typ": author
+#import "/template/article.typ": article
 
 #let ovalbox = body => [
   #h(0.2em)
@@ -6,11 +6,12 @@
   #h(0.2em)
 ]
 
-= 記事を執筆しよう
+#show: article.with(
+  title: "記事を執筆しよう",
+  author: "情報 太郎"
+)
 
-#author("情報 太郎")
-
-== 環境を準備する
+= 環境を準備する
 
 WORDの記事をコンパイルするにあたって、Typst といった
 Typst のツールセットが必要です。
@@ -27,13 +28,13 @@ $ git submodule update --init
 $ make
 ```
 
-== コンパイルする <compile>
+= コンパイルする <compile>
 
 #ovalbox[main.pdf] が作成されれば成功です。
 ただし、`git submodule update --init`は最初のみ必要で、
 その後は`make`のみでよいです。
 
-== 記事を追加する
+= 記事を追加する
 
 まず、#ovalbox[./articles/hinagata]というディレクトリをコピーして任意の名前で
 #ovalbox[articles]ディレクトリへ置きます。
@@ -43,7 +44,8 @@ $ make
 // TODO
 ```
 
-このようになっていると思いますので、この「記事（サンプル）」と「裏表紙」というコメントの間に次のような書き込みをしましょう。
+このようになっていると思いますので、この「記事（サンプル）」と「裏表紙」という
+コメントの間に次のような書き込みをしましょう。
 
 ```
 // TODO
