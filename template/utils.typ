@@ -1,7 +1,8 @@
 #let fonts = (
   header: ("Noto Serif", "Noto Serif CJK JP"),
   heading: ("Times New Roman", "Noto Serif", "Noto Sans CJK JP"),
-  body: ("Times New Roman", "Noto Serif", "Noto Serif CJK JP")
+  body: ("Times New Roman", "Noto Serif", "Noto Serif CJK JP"),
+  raw: ("Source Code Pro", "Noto Sans CJK JP"),
 )
 
 #let jp-pattern = "[\p{scx:Han}\p{scx:Hira}\p{scx:Kana}]"
@@ -43,7 +44,7 @@
             if calc.even(here().page()) { left } else {right},
             box(
               inset: (y: 30%),
-              text(current-chapter.body)
+              text(size: 9pt, current-chapter.body)
             )
           )
         )
@@ -93,19 +94,41 @@
   show heading.where(level: 1): it => {
     // pagebreak(weak: true)
     pad(
-      top: 0.1em,
-      bottom: 1em,
+      top: 0.5pt,
+      bottom: 7pt,
       align(
         center,
-        text(size: 18pt, it)
+        text(size: 20pt, tracking: -1pt, it)
       )
     )
   }
-  show heading.where(level: 2): it => pad(y: 0.5em, text(size: 15pt, it))
-  show heading.where(level: 3): it => pad(y: 0.5em, text(size: 12pt, it))
+  show heading.where(level: 2): it => pad(top: 3pt, bottom: 2pt, text(size: 15pt, it))
+  show heading.where(level: 3): it => pad(top: 3pt, bottom: 2pt, text(size: 13pt, it))
 
   set list(indent: 2em, spacing: 1.1em)
+  set enum(indent: 2em, spacing: 1.1em)
+  set terms(indent: 2em, spacing: 1.1em)
   show list: set block(spacing: 2em)
+  show enum: set block(spacing: 2em)
+  show terms: set block(spacing: 2em)
+
+  show raw: set text(font: fonts.raw)
+
+  set footnote(numbering: sym.dagger + "1")
+  show footnote: it => {
+    set text(size: 1em)
+    it
+  }
+  show footnote.entry: it => {
+    set text(size: 0.85em)
+
+    grid(
+      columns: (auto, 1fr),
+      gutter: 0.75em,
+      numbering(sym.dagger + "1", ..counter(footnote).at(it.note.location())),
+      it.note.body
+    )
+  }
   
   rest
 }

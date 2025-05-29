@@ -7,8 +7,8 @@
   #align(
     right,
     pad(
-      top: 1em,
-      bottom: 1.6em,
+      top: 1.0em,
+      bottom: 1.75em,
       text(size: 10.5pt)[
         #authormark#name
       ]

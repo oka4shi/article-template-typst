@@ -9,6 +9,7 @@
   set page(
     header: none,
     footer: none,
+    margin: (x: 25mm, top: 25mm, bottom: 15mm),
   )
   set par(first-line-indent: (amount: 0pt, all: false))
 
