@@ -1,5 +1,6 @@
 #import "/template/utils.typ": page-setting, body-setting
 #import "@preview/cjk-unbreak:0.1.0": remove-cjk-break-space
+#import "@preview/codly:1.3.0": codly-init
 
 #let author-block(name, authormark) = [
   #metadata(name) <author>
@@ -25,6 +26,7 @@
   show: remove-cjk-break-space
   show: page-setting
   show: body-setting
+  show: codly-init.with()
 
   heading(level: 1, title)
   author-block(author, author-mark)
