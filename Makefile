@@ -1,5 +1,11 @@
 TYPST = typst
 
+check:
+	./scripts/list.sh | ./scripts/check.sh
+
+setup:
+	./scripts/list.sh | ./scripts/install.sh
+
 compile:
 	$(TYPST) compile --root . main.typ main.pdf
 
