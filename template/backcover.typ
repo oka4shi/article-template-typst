@@ -12,6 +12,8 @@
   )
   set par(first-line-indent: (amount: 0pt, all: false))
 
+  pagebreak(to: "even")
+
   text(
     size: 19pt,
   )[情報科学類誌]
