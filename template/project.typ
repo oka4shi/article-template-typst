@@ -10,14 +10,16 @@
 #let project(
   title: "",
   author: "筑波大学情報学群 情報科学類 WORD編集部",
-  edition-dates: (datetime.today(),),
+  publisher: "情報科学類長",
+  editor-chief: "情報太郎",
+  editions: ((date: datetime.today(), circulation: 128),),
   keywords: (),
   body,
 ) = {
   set document(
     title: title,
-    author: author.last(),
-    date: edition-dates.last(),
+    author: author,
+    date: editions.last().date,
     keywords: keywords,
   )
 
@@ -32,5 +34,10 @@
   counter(page).update(1)
   body
 
-  backcover()
+  backcover(
+    title: title,
+    publisher: publisher,
+    editor-chief: editor-chief,
+    editions: editions,
+  )
 }
