@@ -1,7 +1,7 @@
 #let toc() = context {
   set page(
     header: none,
-    footer: none
+    footer: none,
   )
   heading(level: 2, numbering: none, [目次])
 

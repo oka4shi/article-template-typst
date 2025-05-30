@@ -3,7 +3,7 @@
   heading: ("Times New Roman", "Noto Serif", "Noto Sans CJK JP"),
   body: ("Times New Roman", "Noto Serif", "Noto Serif CJK JP"),
   raw: ("Source Code Pro", "Noto Sans CJK JP"),
-  page-number: ("EB Garamond")
+  page-number: "EB Garamond",
 )
 
 #let jp-pattern = "[\p{scx:Han}\p{scx:Hira}\p{scx:Kana}]"
@@ -20,7 +20,7 @@
         10pt,
         font: fonts.page-number,
         number-type: "old-style",
-        numbering(page-numbering, display-page)
+        numbering(page-numbering, display-page),
       ),
     )
   }
@@ -36,7 +36,9 @@
       set par(first-line-indent: (amount: 0pt, all: false))
       set text(font: fonts.header, weight: "medium", lang: "ja")
 
-      let current-chapter = query(heading.where(level: 1)).filter(it => it.location().page() <= here().page()).at(-1, default: none)
+      let current-chapter = query(heading.where(level: 1))
+        .filter(it => it.location().page() <= here().page())
+        .at(-1, default: none)
 
       if current-chapter != none {
         block(
@@ -45,21 +47,21 @@
             bottom: (thickness: 0.5pt),
           ),
           align(
-            if calc.even(here().page()) { left } else {right},
+            if calc.even(here().page()) { left } else { right },
             box(
               inset: (y: 30%),
-              text(size: 9pt, current-chapter.body)
-            )
-          )
+              text(size: 9pt, current-chapter.body),
+            ),
+          ),
         )
       }
     },
     footer: context {
       pageno(here().page-numbering(), counter(page).get().at(0), here().page())
     },
-    footer-descent: 20%
+    footer-descent: 20%,
   )
-  
+
   rest
 }
 
@@ -77,7 +79,7 @@
     first-line-indent: (
       amount: 1em,
       all: true,
-    )
+    ),
   )
   set heading(
     numbering: (_, ..args) => {
@@ -106,14 +108,26 @@
       bottom: 7pt,
       align(
         center,
-        text(size: 20pt, tracking: -1pt, it)
-      )
+        text(size: 20pt, tracking: -1pt, it),
+      ),
     )
   }
 
-  show heading.where(level: 2): it => pad(top: 3pt, bottom: 2pt, text(size: 15pt, it))
-  show heading.where(level: 3): it => pad(top: 3pt, bottom: 2pt, text(size: 13pt, it))
-  show heading.where(level: 4): it => pad(top: 1pt, bottom: 1pt, text(size: 12pt, it))
+  show heading.where(level: 2): it => pad(
+    top: 3pt,
+    bottom: 2pt,
+    text(size: 15pt, it),
+  )
+  show heading.where(level: 3): it => pad(
+    top: 3pt,
+    bottom: 2pt,
+    text(size: 13pt, it),
+  )
+  show heading.where(level: 4): it => pad(
+    top: 1pt,
+    bottom: 1pt,
+    text(size: 12pt, it),
+  )
   show heading.where(level: 4): set heading(numbering: none)
   show heading.where(level: 5): set heading(numbering: none)
   show heading.where(level: 6): set heading(numbering: none)
@@ -141,9 +155,9 @@
       columns: (auto, 1fr),
       gutter: 0.75em,
       numbering(sym.dagger + "1", ..counter(footnote).at(it.note.location())),
-      it.note.body
+      it.note.body,
     )
   }
-  
+
   rest
 }

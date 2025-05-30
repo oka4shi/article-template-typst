@@ -11,8 +11,8 @@
       bottom: 1.75em,
       text(size: 10.5pt)[
         #authormark#name
-      ]
-    )
+      ],
+    ),
   )
 ]
 
@@ -20,9 +20,8 @@
   title: "",
   author: "",
   author-mark: [文#h(1em)編集部#h(1em)],
-  body
+  body,
 ) = {
-
   show: remove-cjk-break-space
   show: page-setting
   show: body-setting
