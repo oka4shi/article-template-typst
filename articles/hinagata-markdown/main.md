@@ -1,46 +1,38 @@
 # Markdownによる執筆
 
-LaTeXを手元に用意せずに簡単に記事を書くために用意しています。複雑なデザインを必要とする場合はLaTeXを使用して下さい。
+Typstの知識を必要とせずに、Markdownを用いて簡単に記事を書くための雛形を用意しています。
+複雑なデザイン・組版を必要とする場合はTypst記法を使用してください。
 
-リポジトリをgitで手元にcloneしたのちにフォルダ名と同じブランチを作成して移動します。
-
-```
-$ git checkout -b articles/my-article-md
-```
-
-とした場合には`articles/hinagata-markdown`フォルダをコピーしたのちにフォルダ名を変更し、`articles/my-article-md`フォルダとします。ブランチ名が異なる場合はフォルダ名も当然異なります。このとき、ブランチ名は必ず`articles/*`という形式にしてください。
-
-`articles/my-article-md`フォルダ内の`main.md`ファイル内に記事を書きます。その際、ファイル冒頭にタイトルと著者名を以下のように必ず記述してください。
+リポジトリをGitで手元にCloneしたのちにフォルダ名と同じブランチを作成して移動します。
 
 ```
----
-title: タイトル
-author: 著者名
----
+$ git switch -c articles/my-article-md
 ```
 
-さて、今度はリポジトリルートにmain.texファイルを開きます。すると
+とした場合には`articles/hinagata-markdown`フォルダをコピーしたのちにフォルダ名を変更し、`articles/my-article-md`フォルダとします。
+ブランチ名が異なる場合はフォルダ名も当然異なります。
+このとき、ブランチ名は必ず`articles/*`という形式にしてください。
 
-```TeX
-\mainmatter
+`articles/my-article-md`フォルダ内の`main.typ`ファイルに各種記事の情報を、`main.md`ファイル内に記事の本文を書きます。
 
-% 記事（サンプル）
-\article{./articles/hinagata}
-% 記事（markdownサンプル）
-\article{./articles/hinagata-markdown}
+`main.typ`ファイルを開き、以下の該当箇所のタイトルと著者名を適宜変更してください。
 
-% 裏表紙
-\article{./articles/back_cover}
+```
+#show: article.with(
+  title: "記事を執筆しよう",
+  author: "情報 太郎"
+)
 ```
 
-このようになっていると思いますので、この「記事（サンプル）」と「裏表紙」という
-コメントの間に次のような書き込みをしましょう。
+`main.md`に記事の本文の内容を書きます。
 
-```TeX
-\article{./articles/my-article-md}
+さて、今度はリポジトリルートに`main.typ`ファイルの末尾に以下のような行を追加します。
+
+```
+#include "articles/my-article-md/main.typ"
 ```
 
-このとき、`\article`コマンドの引数には記事のあるフォルダまでのパスを与えてください。
+このとき、`include` の引数には記事のあるフォルダまでのパスを与えてください。
 
 記事の執筆が終わったらcommitをしてpushしましょう。
 
@@ -103,9 +95,9 @@ print("hello")
 
 ![画像のテスト（jpeg）](./wordlogo.jpg)
 
-このようにPDFやJPEG、PNG画像を付けることができます。
+このように画像を付けることができます。
 
-画像の横幅や縦幅を指定したい場合はLaTeXコードを書く必要があります：
+画像の横幅や縦幅を指定したい場合はTypstコードを書く必要があります：
 
 <!--raw-typst
 #figure(
@@ -122,30 +114,22 @@ $$x + y = \frac{y}{x}$$
 
 行の中に入れることもできます。：$a + b = c$
 
-## \LaTeX コマンド
+## raw-typst コマンド
 
 コマンドを文中に書くことができます。
 
 例えば強制的に改ページしたいときは
 
-\newpage
-
-とすれば実現できます
-
-# texファイルの生成
-
-texファイルが必要になった場合はpandocをインストールしたのちに
-
 ```
-make pandoc
+<!--raw-typst
+#page-break()
+-->
 ```
 
-とすることで生成することができます。
+とすれば実現できます。
 
 # その他情報
 
-pandoc 3.1.2での動作を確認している。
+Markdownで執筆できる環境の整備をしたのは@Ryoga-exe[^ryoga]なので、何か聞きたい場合は連絡を。
 
-Markdownで執筆できる環境の整備をしたのは@puripuri2100[^puripuri2100]なので、何か聞きたい場合は連絡を。
-
-[^puripuri2100]: [https://twitter.com/puripuri2100](https://twitter.com/puripuri2100)
+[^ryoga]: https://github.com/Ryoga-exe
