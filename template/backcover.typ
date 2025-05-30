@@ -9,7 +9,7 @@
   set page(
     header: none,
     footer: none,
-    margin: (x: 25mm, top: 25mm, bottom: 15mm),
+    margin: (x: 25mm, top: 25mm, bottom: 18mm),
   )
   set par(first-line-indent: (amount: 0pt, all: false))
 
@@ -18,15 +18,19 @@
   text(
     size: 19pt,
   )[情報科学類誌]
-  image(
-    width: 100%,
-    "assets/wordlogo.svg"
+  // 普通に画像を調整するべき
+  move(
+    dy: -4pt,
+    image(
+      width: 100%,
+      "assets/wordlogo.svg"
+    )
   )
 
   place(
     center + horizon,
     box(
-      text(size: 26pt, top-edge: "baseline", title)
+      text(size: 28pt, top-edge: "baseline", title)
     )
   )
 
