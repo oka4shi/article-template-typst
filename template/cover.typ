@@ -1,11 +1,9 @@
 #let cover() = {
-  // TODO: set image to page background or provide template
   set page(
     header: none,
-    footer: none
+    footer: none,
+    background: image("assets/cover.png")
   )
-
-  [aaaa]
 
   pagebreak(weak: true)
 }
