@@ -1,7 +1,7 @@
 #let fonts = (
-  header: ("Noto Serif", "Noto Serif CJK JP"),
-  heading: ("Times New Roman", "Noto Serif", "Noto Sans CJK JP"),
-  body: ("Times New Roman", "Noto Serif", "Noto Serif CJK JP"),
+  header: ("TeX Gyre Termes", "Noto Serif", "Noto Serif CJK JP"),
+  heading: ("TeX Gyre Termes", "Noto Serif", "Noto Sans CJK JP"),
+  body: ("TeX Gyre Termes", "Noto Serif", "Noto Serif CJK JP"),
   raw: ("Source Code Pro", "Noto Sans CJK JP"),
   page-number: "EB Garamond",
 )
@@ -29,7 +29,7 @@
 #let page-setting(rest) = {
   set page(
     paper: "jis-b5",
-    margin: (x: 25mm, top: 29mm, bottom: 15mm),
+    margin: (x: 25mm, top: 26mm, bottom: 15mm),
     binding: auto,
     numbering: "1",
     header: context {
@@ -59,6 +59,7 @@
     footer: context {
       pageno(here().page-numbering(), counter(page).get().at(0), here().page())
     },
+    header-ascent: 22%,
     footer-descent: 20%,
   )
 
@@ -104,11 +105,11 @@
   show heading.where(level: 1): it => {
     // pagebreak(weak: true)
     pad(
-      top: 0.5pt,
+      top: 4pt,
       bottom: 7pt,
       align(
         center,
-        text(size: 20pt, tracking: -1pt, it),
+        text(size: 20pt, it),
       ),
     )
   }
