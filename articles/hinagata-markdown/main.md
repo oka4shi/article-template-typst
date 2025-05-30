@@ -99,9 +99,53 @@ $ git push
 print("hello")
 ```
 
-## 表
+## 画像
 
-| Column 1     | Column 2     |
-| ------------ | ------------ |
-| Row 1 Cell 1 | Row 1 Cell 2 |
-| Row 2 Cell 1 | Row 2 Cell 2 |
+![画像のテスト（jpeg）](./wordlogo.jpg)
+
+このようにPDFやJPEG、PNG画像を付けることができます。
+
+画像の横幅や縦幅を指定したい場合はLaTeXコードを書く必要があります：
+
+<!--raw-typst
+#figure(
+  image("./wordlogo.jpg", width: 50%),
+  caption: "画像のテスト"
+)
+-->
+
+## 数式
+
+簡単な数式は$マークの間に書くことで実現できます。
+
+$$x + y = \frac{y}{x}$$
+
+行の中に入れることもできます。：$a + b = c$
+
+## \LaTeX コマンド
+
+コマンドを文中に書くことができます。
+
+例えば強制的に改ページしたいときは
+
+\newpage
+
+とすれば実現できます
+
+# texファイルの生成
+
+texファイルが必要になった場合はpandocをインストールしたのちに
+
+```
+make pandoc
+```
+
+とすることで生成することができます。
+
+# その他情報
+
+pandoc 3.1.2での動作を確認している。
+
+Markdownで執筆できる環境の整備をしたのは@puripuri2100[^puripuri2100]なので、何か聞きたい場合は連絡を。
+
+[^puripuri2100]: [https://twitter.com/puripuri2100](https://twitter.com/puripuri2100)
