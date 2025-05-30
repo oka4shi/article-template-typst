@@ -3,6 +3,7 @@
   heading: ("Times New Roman", "Noto Serif", "Noto Sans CJK JP"),
   body: ("Times New Roman", "Noto Serif", "Noto Serif CJK JP"),
   raw: ("Source Code Pro", "Noto Sans CJK JP"),
+  page-number: ("EB Garamond")
 )
 
 #let jp-pattern = "[\p{scx:Han}\p{scx:Hira}\p{scx:Kana}]"
@@ -11,10 +12,13 @@
   if (page-numbering == none) {
     none
   } else {
-    align(
-      if calc.odd(actucal-page) { right } else { left },
+    let isOdd = calc.odd(actucal-page)
+    place(
+      if isOdd { right } else { left },
+      dx: 13mm * if (isOdd) { 1 } else { -1 },
       text(
-        8pt,
+        10pt,
+        font: fonts.page-number,
         number-type: "old-style",
         numbering(page-numbering, display-page)
       ),
@@ -52,7 +56,8 @@
     },
     footer: context {
       pageno(here().page-numbering(), counter(page).get().at(0), here().page())
-    }
+    },
+    footer-descent: 20%
   )
   
   rest
@@ -75,9 +80,12 @@
     )
   )
   set heading(
-    numbering: (..nums) => {
-      if nums.pos().len() > 1 {
-        nums.pos().slice(1).map(str).join(".")
+    numbering: (_, ..args) => {
+      let nums = args.pos()
+      if (nums.len() > 3) {
+        none
+      } else {
+        nums.map(str).join(".")
         h(0.55em)
       }
     },
@@ -102,8 +110,15 @@
       )
     )
   }
+
   show heading.where(level: 2): it => pad(top: 3pt, bottom: 2pt, text(size: 15pt, it))
   show heading.where(level: 3): it => pad(top: 3pt, bottom: 2pt, text(size: 13pt, it))
+  show heading.where(level: 4): it => pad(top: 1pt, bottom: 1pt, text(size: 12pt, it))
+  show heading.where(level: 4): set heading(numbering: none)
+  show heading.where(level: 5): set heading(numbering: none)
+  show heading.where(level: 6): set heading(numbering: none)
+  show heading.where(level: 7): set heading(numbering: none)
+  show heading.where(level: 8): set heading(numbering: none)
 
   set list(indent: 2em, spacing: 1.1em)
   set enum(indent: 2em, spacing: 1.1em)
