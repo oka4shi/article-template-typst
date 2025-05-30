@@ -35,4 +35,4 @@ done
 
 unzip -q "fonts/*.zip" -d fonts/
 
-rm -rf "fonts/*.zip"
+rm -rf fonts/*.zip
