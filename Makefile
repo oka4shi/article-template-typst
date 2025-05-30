@@ -14,3 +14,4 @@ watch:
 
 clean:
 	rm -rf *.pdf
+	rm -rf fonts

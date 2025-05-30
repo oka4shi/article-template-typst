@@ -33,4 +33,6 @@ for name in "${!missing_fonts[@]}"; do
   wget -q ${missing_fonts[$name]} -P fonts/
 done
 
-unzip -q fonts/*.zip -d fonts/
+unzip -q "fonts/*.zip" -d fonts/
+
+rm -rf "fonts/*.zip"
