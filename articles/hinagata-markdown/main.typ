@@ -9,5 +9,11 @@
 
 #cmarker.render(
   read("main.md"),
-  math: mitex
+  math: mitex,
+  scope: (
+    image: (path, alt: none, ..args) => figure(
+      image(path, alt: alt, ..args),
+      caption: alt,
+    )
+  ),
 )
