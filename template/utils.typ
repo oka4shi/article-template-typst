@@ -135,6 +135,10 @@
   show heading.where(level: 7): set heading(numbering: none)
   show heading.where(level: 8): set heading(numbering: none)
 
+  show strong: set text(
+    font: fonts.heading,
+    weight: 450,
+  )
   set list(indent: 2em, spacing: 1.1em)
   set enum(indent: 2em, spacing: 1.1em)
   set terms(indent: 2em, spacing: 1.1em)
@@ -159,6 +163,12 @@
       it.note.body,
     )
   }
+
+  show figure: it => pad(y: 1em, it)
+  show figure.caption: it => pad(top: 0.5em, text(0.95em, it))
+  show math.equation.where(block: true): set block(spacing: 1.5em)
+  set math.cases(gap: 0.8em)
+  set math.mat(gap: 0.8em)
 
   rest
 }
