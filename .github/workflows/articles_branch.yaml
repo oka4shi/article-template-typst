@@ -7,7 +7,7 @@ on:
     branches: ["articles/**"]
 
 jobs:
-  build-article:
+  compile-article:
     runs-on: ubuntu-22.04
     container:
       image: ghcr.io/typst/typst:latest
@@ -33,11 +33,11 @@ jobs:
             echo "article_name=$ARTICLE_NAME" >> $GITHUB_OUTPUT
           fi
 
-      - name: build article
+      - name: compile article
         if: steps.branch_info.outputs.match
         run: |
           cd "${{ steps.branch_info.outputs.branch }}"
-          make build
+          make compile
 
       - name: upload artifact
         if: steps.branch_info.outputs.match
