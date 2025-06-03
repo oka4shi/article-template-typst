@@ -16,7 +16,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: setup environment
-        run: make setup
+        run: |
+          apt update -y && apt install -y make
+          make setup
 
       - name: build article
         if: steps.branch_info.outputs.match

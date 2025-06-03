@@ -17,7 +17,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: setup environment
-        run: make setup
+        run: |
+          apt update -y && apt install -y make
+          make setup
 
       - name: get branch info
         id: branch_info
