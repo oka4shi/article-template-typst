@@ -33,6 +33,13 @@ for name in "${!missing_fonts[@]}"; do
   wget -q ${missing_fonts[$name]} -P fonts/
 done
 
-unzip -q 'fonts/*.zip' -d fonts/
+shopt -s nullglob
+for zip_file in fonts/*.zip; do
+  echo "Unzipping ${zip_file}..."
+  if ! unzip -q "$zip_file" -d fonts/; then
+    printf "%b[WARN]%b Failed to unzip %s\n" "$YELLOW" "$RESET" "$zip_file" >&2
+  fi
+done
+shopt -u nullglob
 
 rm -rf fonts/*.zip
