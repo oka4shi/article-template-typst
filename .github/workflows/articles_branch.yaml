@@ -18,7 +18,7 @@ jobs:
 
       - name: setup environment
         run: |
-          apt update -y && apt install -y make
+          apk add make bash
           make setup
 
       - name: get branch info
