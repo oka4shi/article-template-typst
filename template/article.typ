@@ -31,10 +31,9 @@
   codly(
     zebra-fill: none,
     fill: luma(95%),
-    stroke: 1pt + luma(80%),
+    // stroke: 1pt + luma(80%),
     display-name: false,
     inset: 0.3em,
-    radius: 6pt,
     number-placement: "outside",
   )
 

@@ -147,6 +147,10 @@
   show terms: set block(spacing: 2em)
 
   show raw: set text(font: fonts.raw)
+  set raw(
+    // コメントだけ色が薄いカラースキーム
+    theme: "assets/quiet.tmTheme"
+  )
 
   set footnote(numbering: sym.dagger + "1")
   show footnote: it => {
