@@ -16,4 +16,9 @@
       caption: alt,
     ),
   ),
+  html: (
+    pagebreak: ("void", _ => pagebreak()),
+    h: ("void", attrs => h(int(attrs.value) * 1pt)),
+    v: ("void", attrs => v(int(attrs.value) * 1pt)),
+  )
 )
