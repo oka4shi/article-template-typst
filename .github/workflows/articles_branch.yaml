@@ -7,7 +7,7 @@ on:
     branches: ["articles/**"]
 
 jobs:
-  compile-article:
+  make-article:
     runs-on: ubuntu-22.04
     container:
       image: ghcr.io/typst/typst:latest
