@@ -1,0 +1,31 @@
+name: Articles Branch CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-article:
+    runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/typst/typst:latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup environment
+        run: make setup
+
+      - name: build article
+        if: steps.branch_info.outputs.match
+        run: make build
+
+      - name: upload artifact
+        if: steps.branch_info.outputs.match
+        uses: actions/upload-artifact@v4
+        with:
+          name: main.pdf
+          path: main.pdf
+          retention-days: 3
