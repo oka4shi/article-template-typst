@@ -8,7 +8,7 @@
 
 #show: article.with(
   title: "記事を執筆しよう",
-  author: "情報 太郎"
+  author: "情報 太郎",
 )
 
 = 環境を準備する
@@ -34,7 +34,7 @@ $ make setup
 記事全体をコンパイルする場合は、記事のGitリポジトリのルートで次のコマンドを実行します。
 
 ```
-$ make build
+$ make compile
 ```
 
 #ovalbox[main.pdf] が作成されれば成功です。
@@ -51,7 +51,7 @@ $ make build
 #include "articles/hinagata/main.typ"
 ```
 
-そして、@compile に従って `make build` を実行し、記事が適切にコンパイルされることを確認します。
+そして、@compile に従って `make compile` を実行し、記事が適切にコンパイルされることを確認します。
 
 = Gitサーバにpushする
 
