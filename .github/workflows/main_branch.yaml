@@ -1,0 +1,31 @@
+name: Main Branch CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  make-article:
+    runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/typst/typst:latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup environment
+        run: |
+          apk add make bash
+          make setup
+
+      - name: compile article
+        run: make compile
+
+      - name: upload 
+        uses: actions/upload-artifact@v4
+        with:
+          name: main.pdf
+          path: main.pdf
+          retention-days: 3
