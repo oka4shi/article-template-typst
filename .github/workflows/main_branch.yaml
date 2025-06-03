@@ -21,11 +21,9 @@ jobs:
           make setup
 
       - name: build article
-        if: steps.branch_info.outputs.match
         run: make build
 
-      - name: upload artifact
-        if: steps.branch_info.outputs.match
+      - name: upload 
         uses: actions/upload-artifact@v4
         with:
           name: main.pdf
