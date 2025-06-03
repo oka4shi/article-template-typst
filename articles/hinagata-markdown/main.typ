@@ -4,7 +4,7 @@
 
 #show: article.with(
   title: "記事を執筆しよう",
-  author: "情報 太郎"
+  author: "情報 太郎",
 )
 
 #cmarker.render(
@@ -14,6 +14,6 @@
     image: (path, alt: none, ..args) => figure(
       image(path, alt: alt, ..args),
       caption: alt,
-    )
+    ),
   ),
 )
