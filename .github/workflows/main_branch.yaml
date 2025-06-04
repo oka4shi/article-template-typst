@@ -41,7 +41,7 @@ jobs:
           curl -sSL $(curl -s https://api.github.com/repos/typst/typst/releases/latest | \
           jq -r '.assets[] | select(.name | contains("'${TYPST_ARCH}'") and endswith(".tar.xz")) | .browser_download_url') \
           -o typst.tar.xz && \
-          tar -zxvf typst.tar.xz --strip-components 1 && \
+          tar -xvf typst.tar.xz --strip-components 1 && \
           install typst /usr/local/bin && \
           rm typst.tar.xz
 
