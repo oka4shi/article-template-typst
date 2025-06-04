@@ -51,7 +51,7 @@ jobs:
         with:
           path: |
             fonts
-          key: fonts-
+          key: fonts-${{ hashFiles('**/fonts.list') }}
           restore-keys: |
             fonts-${{ hashFiles('**/fonts.list') }}
 
