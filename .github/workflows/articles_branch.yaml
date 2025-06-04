@@ -9,17 +9,41 @@ on:
 jobs:
   make-article:
     runs-on: ubuntu-24.04
-    container:
-      image: ghcr.io/typst/typst:latest
 
     steps:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: setup environment
+      - name: Prepare Variables
         run: |
-          apk add make bash
-          make setup
+          if [ "$(uname -m)" = "x86_64" ]; then
+            echo "TYPST_ARCH=x86_64-unknown-linux-musl" >> $GITHUB_ENV
+          elif [ "$(uname -m)" = "arm64" ]; then
+            echo "TYPST_ARCH=aarch64-unknown-linux-musl" >> $GITHUB_ENV
+          else
+            echo "Unsupported architecture: $(uname -m)"
+            exit 1
+          fi
+
+      - name: Cache Typst
+        uses: actions/cache@v4
+        id: typst-cache
+        with:
+          path: /usr/local/bin/typst
+          key: typst-${{ env.TYPST_ARCH }}
+          restore-keys: |
+            typst-${{ env.TYPST_ARCH }}
+
+      - name: Install Typst
+        if: steps.typst-cache.outputs.cache-hit != 'true'
+        run: |
+          cd /tmp
+          curl -sSL $(curl -s https://api.github.com/repos/typst/typst/releases/latest | \
+          jq -r '.assets[] | select(.name | contains("'${TYPST_ARCH}'") and endswith(".tar.xz")) | .browser_download_url') \
+          -o typst.tar.xz && \
+          tar -zxvf typst.tar.xz --strip-components 1 && \
+          install typst /usr/local/bin && \
+          rm typst.tar.xz
 
       - name: get branch info
         id: branch_info
