@@ -45,6 +45,20 @@ jobs:
           install typst /usr/local/bin && \
           rm typst.tar.xz
 
+      - name: Cache Fonts
+        uses: actions/cache@v4
+        id: fonts-cache
+        with:
+          path: |
+            fonts
+          key: fonts-
+          restore-keys: |
+            fonts-${{ hashFiles('**/fonts.list') }}
+
+      - name: Install Fonts
+        if: steps.fonts-cache.outputs.cache-hit != 'true'
+        run: make setup
+
       - name: compile article
         run: make compile
 
