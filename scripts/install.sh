@@ -30,16 +30,23 @@ mkdir -p fonts
 # TODO: consider multithread
 for name in "${!missing_fonts[@]}"; do
   echo "Download ${name}..."
-  wget -q ${missing_fonts[$name]} -P fonts/
-done
+  # Create temporary directory for each font
+  TEMP_DIR=$(mktemp -d)
+  wget -q ${missing_fonts[$name]} -P "$TEMP_DIR/"
+  
+  # Unzip in the temporary directory
+  shopt -s nullglob
+  for zip_file in "$TEMP_DIR"/*.zip; do
+    echo "Unzipping ${zip_file}..."
+    if ! unzip -q "$zip_file" -d "$TEMP_DIR/"; then
+      printf "%b[WARN]%b Failed to unzip %s\n" "$YELLOW" "$RESET" "$zip_file" >&2
+    fi
+  done
+  shopt -u nullglob
 
-shopt -s nullglob
-for zip_file in fonts/*.zip; do
-  echo "Unzipping ${zip_file}..."
-  if ! unzip -q "$zip_file" -d fonts/; then
-    printf "%b[WARN]%b Failed to unzip %s\n" "$YELLOW" "$RESET" "$zip_file" >&2
-  fi
-done
-shopt -u nullglob
+  # Copy only font files to fonts directory
+  find "$TEMP_DIR" -type f \( -name "*.ttf" -o -name "*.otf" \) -exec cp {} fonts/ \;
 
-rm -rf fonts/*.zip
+  # Cleanup
+  rm -rf "$TEMP_DIR"
+done
