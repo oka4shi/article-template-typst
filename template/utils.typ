@@ -1,7 +1,7 @@
 #let fonts = (
-  header: ("TeX Gyre Termes", "Noto Serif", "Noto Serif CJK JP"),
-  heading: ("TeX Gyre Termes", "Noto Serif", "Noto Sans CJK JP"),
-  body: ("TeX Gyre Termes", "Noto Serif", "Noto Serif CJK JP"),
+  header: ("TeX Gyre Termes", "Noto Serif CJK JP"),
+  heading: ("TeX Gyre Termes", "Noto Sans CJK JP"),
+  body: ("TeX Gyre Termes", "Noto Serif CJK JP"),
   raw: ("Source Code Pro", "Noto Sans CJK JP"),
   page-number: "EB Garamond",
 )
