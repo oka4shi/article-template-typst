@@ -8,6 +8,15 @@
 - [Typst](https://typst.app/)
 - [GNU Make](https://www.gnu.org/software/make/)
 
+## オンラインエディタ
+
+オンラインエディタで記事全体を見たり、フォークして編集することができます。
+
+- [全体版](https://typst.app/project/rqwZqick30FpZ9Y7ulL0LD)
+- [単一記事版](https://typst.app/project/rHrX8BCoMolpFryTcFyUeW)
+
+<sup>オンラインエディタでは最新の変更が取り込まれていない場合があります。オンラインエディタ上の `version.txt` を確認してください。</sup>
+
 ## 編集の仕方
 
 ### 0. ビルドに必要な環境を整える
