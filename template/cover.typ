@@ -5,5 +5,5 @@
     background: image("assets/cover.png"),
   )
 
-  pagebreak(weak: true)
+  pagebreak()
 }
