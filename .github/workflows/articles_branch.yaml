@@ -84,3 +84,4 @@ jobs:
           name: ${{ steps.branch_info.outputs.article_name }}.pdf
           path: ${{ steps.branch_info.outputs.branch }}/main.pdf
           retention-days: 3
+          compression-level: 0
