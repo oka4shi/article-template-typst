@@ -42,5 +42,7 @@
 
   set heading(offset: 1)
 
+  counter(footnote).update(0)
+
   body
 }
