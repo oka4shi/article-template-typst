@@ -97,14 +97,9 @@ print("hello")
 
 このように画像を付けることができます。
 
-画像の横幅や縦幅を指定したい場合はTypstコードを書く必要があります：
+画像の横幅や縦幅を指定したい場合は `img` タグを使って書く必要があります：
 
-<!--raw-typst
-#figure(
-  image("./wordlogo.jpg", width: 50%),
-  caption: "画像のテスト"
-)
--->
+<img alt="画像のテスト" src="./wordlogo.jpg" width="50%"/>
 
 ## 数式
 
