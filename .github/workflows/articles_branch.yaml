@@ -90,6 +90,7 @@ jobs:
         if: ${{ steps.upload_artifact.outputs.artifact-url }}
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            BRANCH: ${{ github.head_ref }}
         run: |
           if [[ "${{ steps.upload_artifact.outputs.artifact-url }}" =~ github\.com/([^/]+)/([^/]+)/actions/runs/[0-9]+/artifacts/([0-9]+) ]]; then
             owner="${BASH_REMATCH[1]}"
