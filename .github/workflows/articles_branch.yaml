@@ -2,7 +2,7 @@ name: Articles Branch CI
 
 on:
   pull_request:
-    branches: ["articles/**"]
+    branches: ["main"]
 
 jobs:
   make-article:
