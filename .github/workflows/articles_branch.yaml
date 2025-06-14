@@ -76,7 +76,7 @@ jobs:
         run: |
           cd "${{ steps.branch_info.outputs.branch }}"
           make compile
-          mv main.pdf "${{ steps.build.outputs.article_name }}.pdf"
+          mv main.pdf "${{ steps.branch_info.outputs.article_name }}.pdf"
 
       - name: upload artifact
         id: upload-artifact
@@ -84,7 +84,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.branch_info.outputs.article_name }}.pdf
-          path: ${{ steps.branch_info.outputs.branch }}/${{ steps.build.outputs.article_name }}.pdf
+          path: ${{ steps.branch_info.outputs.branch }}/${{ steps.branch_info.outputs.article_name }}.pdf
           retention-days: 3
           compression-level: 0
 
