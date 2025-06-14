@@ -1,8 +1,6 @@
 name: Articles Branch CI
 
 on:
-  push:
-    branches: ["articles/**"]
   pull_request:
     branches: ["articles/**"]
 
