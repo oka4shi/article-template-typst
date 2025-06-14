@@ -8,7 +8,7 @@
 
 #show: article.with(
   title: "記事を執筆しよう",
-  author: "情報 太郎",
+  author: "おかし",
 )
 
 = 環境を準備する
