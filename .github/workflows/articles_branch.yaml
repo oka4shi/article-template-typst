@@ -1,14 +1,13 @@
 name: Articles Branch CI
 
 on:
-  push:
-    branches: ["articles/**"]
   pull_request:
-    branches: ["articles/**"]
+    branches: ["main"]
 
 jobs:
   make-article:
     runs-on: ubuntu-24.04
+    if: startsWith(github.head_ref, 'articles/')
 
     steps:
       - name: checkout
@@ -63,7 +62,7 @@ jobs:
         id: branch_info
         shell: bash
         run: |
-          BRANCH="${GITHUB_REF#refs/heads/}"
+          BRANCH="${{github.head_ref}}"
           echo "branch=$BRANCH" >> $GITHUB_OUTPUT
           if [[ "$BRANCH" =~ ^articles/([^/]+)$ ]]; then
             ARTICLE_NAME="${BASH_REMATCH[1]}"
@@ -104,9 +103,9 @@ jobs:
           artifact_link="[${{ steps.branch_info.outputs.article_name }}.pdf](${{ steps.upload_artifact.outputs.artifact-url }})"
           message="記事がビルドされました: ${artifact_link} ${preview_link}"
           set +e
-          echo $message | gh pr comment "${{inputs.pr_url }}" -F "-" --edit-last
+          echo $message | gh pr comment "${{ github.event.pull_request.html_url }}" -F "-" --edit-last
           if [ $? -ne 0 ]; then
             # コメントが存在しないなどにより失敗した場合は新しく投稿する
-            echo $message | gh pr comment "${{inputs.pr_url }}" -F "-"
+            echo $message | gh pr comment "${{ github.event.pull_request.html_url }}" -F "-"
           fi
           set -e
