@@ -61,7 +61,7 @@ jobs:
         id: branch_info
         shell: bash
         run: |
-          BRANCH="${GITHUB_REF#refs/heads/}"
+          BRANCH="${{github.head_ref}}"
           echo "branch=$BRANCH" >> $GITHUB_OUTPUT
           if [[ "$BRANCH" =~ ^articles/([^/]+)$ ]]; then
             ARTICLE_NAME="${BASH_REMATCH[1]}"
