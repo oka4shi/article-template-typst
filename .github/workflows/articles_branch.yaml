@@ -96,7 +96,7 @@ jobs:
             owner="${BASH_REMATCH[1]}"
             repo="${BASH_REMATCH[2]}"
             artifact_id="${BASH_REMATCH[3]}"
-            preview_link="（[プレビュー](https://oka4shi.github.io/artifact-previewer/?owner=${owner}&repo=${repo}&artifact_id=${artifact_id})）"
+            preview_link="（[プレビュー](https://word-coins.github.io/artifact-previewer/?owner=${owner}&repo=${repo}&artifact_id=${artifact_id})）"
           else
             preview_link=""
           fi
