@@ -92,4 +92,15 @@ $ git push origin articles/my_article
 )
 ```
 
+= 画像を追加して重くしちゃうぞー！
+#figure(
+  image("0Z5_4069.JPG ", width: 80%),
+  caption: [デカい画像],
+)
+
+#figure(
+image("0Z5_4100.JPG ", width: 80%),
+caption: [デカい画像 2(ツー)],
+)
+
 // TODO:
