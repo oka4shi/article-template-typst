@@ -101,10 +101,4 @@ jobs:
           fi
           artifact_link="[${{ steps.branch_info.outputs.article_name }}.pdf](${{ steps.upload_artifact.outputs.artifact-url }})"
           message="記事がビルドされました: ${artifact_link} ${preview_link}"
-          set +e
-          echo $message | gh pr comment "${{ github.event.pull_request.html_url }}" -F "-" --edit-last
-          if [ $? -ne 0 ]; then
-            # コメントが存在しないなどにより失敗した場合は新しく投稿する
-            echo $message | gh pr comment "${{ github.event.pull_request.html_url }}" -F "-"
-          fi
-          set -e
+          echo $message | gh pr comment "${{ github.event.pull_request.html_url }}" -F "-" --edit-last --create-if-none
