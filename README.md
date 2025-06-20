@@ -61,6 +61,8 @@ echo '\n#include "articles/my_article/main.typ"' >> main.typ
 ### 4. 記事を編集する
 
 手順 (2) で作成したディレクトリの中にあるファイル `main.typ`（Markdown テンプレートを使用した場合は `main.md`）を編集することで、記事をつくれます。
+`#include` や `#set` などを使いたい場合は、`articles/my_article/main.typ` 内で使ってください。
+各記事の環境は独立なので、後ろの記事に設定が影響してしまうことはありません。
 
 ## コンパイル
 
