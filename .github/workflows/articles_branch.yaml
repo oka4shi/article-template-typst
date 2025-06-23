@@ -96,13 +96,13 @@ jobs:
             repo="${BASH_REMATCH[2]}"
             artifact_id="${BASH_REMATCH[3]}"
             job_url="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            preview_link="（[プレビュー](https://word-coins.github.io/artifact-previewer/?owner=${owner}&repo=${repo}&artifact_id=${artifact_id})）\n\n"
-            expired="有効期限(おおよそ): $(date --date "7 days" +%F)\n"
+            preview_link="（[プレビュー](https://word-coins.github.io/artifact-previewer/?owner=${owner}&repo=${repo}&artifact_id=${artifact_id})）"$'\n\n'
+            expired="有効期限(おおよそ): $(date --date "7 days" +%F)"$'\n'
             renew="有効期限が切れた場合は[こちら](${job_url})からRe-run all jobsを実行してください"
 
             artifact_link="[${{ steps.branch_info.outputs.article_name }}.pdf.zip](${{ steps.upload_artifact.outputs.artifact-url }})"
-            message="記事がビルドされました: ${artifact_link} ${preview_link}${expred}${renew}"
+            message="記事がビルドされました: ${artifact_link} ${preview_link}${expired}${renew}"
           else
             message="記事はビルドされましたが、ArtifactのURLが取得できませんでした"
           fi
-          echo $message | gh pr comment "${{ github.event.pull_request.html_url }}" -F "-" --edit-last --create-if-none
+          gh pr comment "${{ github.event.pull_request.html_url }}" --body "${message}" --edit-last --create-if-none
