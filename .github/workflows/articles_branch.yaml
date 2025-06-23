@@ -105,4 +105,4 @@ jobs:
           else
             message="記事はビルドされましたが、ArtifactのURLが取得できませんでした"
           fi
-          echo $message | gh pr comment "${{ github.event.pull_request.html_url }}" -F "-" --edit-last --create-if-none
+          gh pr comment "${{ github.event.pull_request.html_url }}" --body "${message}" --edit-last --create-if-none
