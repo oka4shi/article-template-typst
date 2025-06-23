@@ -84,7 +84,7 @@ jobs:
         with:
           name: ${{ steps.branch_info.outputs.article_name }}.pdf
           path: ${{ steps.branch_info.outputs.branch }}/${{ steps.branch_info.outputs.article_name }}.pdf
-          retention-days: 3
+          retention-days: 7
 
       - name: Post a comment
         if: ${{ steps.upload_artifact.outputs.artifact-url }}
@@ -95,10 +95,14 @@ jobs:
             owner="${BASH_REMATCH[1]}"
             repo="${BASH_REMATCH[2]}"
             artifact_id="${BASH_REMATCH[3]}"
-            preview_link="（[プレビュー](https://word-coins.github.io/artifact-previewer/?owner=${owner}&repo=${repo}&artifact_id=${artifact_id})）"
+            job_url="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            preview_link="（[プレビュー](https://word-coins.github.io/artifact-previewer/?owner=${owner}&repo=${repo}&artifact_id=${artifact_id})）\n\n"
+            expired="有効期限(おおよそ): $(date --date "7 days" +%F)\n"
+            renew="有効期限が切れた場合は[こちら](${job_url})からRe-run all jobsを実行してください"
+
+            artifact_link="[${{ steps.branch_info.outputs.article_name }}.pdf.zip](${{ steps.upload_artifact.outputs.artifact-url }})"
+            message="記事がビルドされました: ${artifact_link} ${preview_link}${expred}${renew}"
           else
-            preview_link=""
+            message="記事はビルドされましたが、ArtifactのURLが取得できませんでした"
           fi
-          artifact_link="[${{ steps.branch_info.outputs.article_name }}.pdf](${{ steps.upload_artifact.outputs.artifact-url }})"
-          message="記事がビルドされました: ${artifact_link} ${preview_link}"
           echo $message | gh pr comment "${{ github.event.pull_request.html_url }}" -F "-" --edit-last --create-if-none
