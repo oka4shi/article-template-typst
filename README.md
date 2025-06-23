@@ -4,6 +4,7 @@
 
 ## 必要なもの
 
+- [Bash](https://www.gnu.org/software/bash/): **4系以上が必要です**（特に macOS にプリインストールの bash はこの条件を満たさない可能性があります）
 - [Git](https://git-scm.com/)
 - [Typst](https://typst.app/)
 - [GNU Make](https://www.gnu.org/software/make/)
@@ -28,7 +29,6 @@ make setup
 ```
 
 を実行すると、不足している記事のコンパイルに必要なフォントがダウンロードされます。
-**Bash 4系以上が必要です**（特に macOS にプリインストールの bash はこの条件を満たさない可能性があります）。
 
 ### 1. ブランチを切る
 
