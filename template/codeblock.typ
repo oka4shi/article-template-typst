@@ -11,8 +11,6 @@
 #let init-codeblock(
   body,
 ) = {
-  context let show-numbers = show-line-numbers-state.get()
-
   show raw.where(block: true): it => {
     set par(
       leading: 0.9em,
@@ -31,7 +29,7 @@
         for (i, line) in it.text.trim("\n").split("\n").enumerate() {
           box(
             width: 0pt,
-            align(right, text(0.95em, luma(40%), str(i + 1) + h(2em)))
+            align(right, text(0.95em, luma(40%), context if show-line-numbers-state.get() { str(i + 1) } else { "" } + h(2em)))
           )
           hide(line)
           linebreak()
