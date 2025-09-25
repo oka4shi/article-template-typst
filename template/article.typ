@@ -25,7 +25,7 @@
   show: remove-cjk-break-space
   show: page-setting
   show: body-setting
-  show: init-codeblock.with()
+  show: init-codeblock
 
   show-line-numbers(true)
 
