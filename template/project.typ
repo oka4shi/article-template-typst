@@ -3,7 +3,6 @@
 #import "/template/cover.typ": cover
 #import "/template/backcover.typ": backcover
 #import "@preview/cjk-unbreak:0.1.0": remove-cjk-break-space
-#import "@preview/codly:1.3.0": codly-init
 
 #let date-format = "[year]年[month repr:numerical padding:none]月[day padding:none]日"
 
@@ -26,7 +25,6 @@
   show: remove-cjk-break-space
   show: page-setting
   show: body-setting
-  show: codly-init.with()
 
   cover()
   toc()
