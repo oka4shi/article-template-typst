@@ -76,6 +76,7 @@
   set par(
     leading: 1.1em,
     spacing: 1.1em,
+    justify: true,
     linebreaks: auto,
     first-line-indent: (
       amount: 1em,
