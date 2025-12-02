@@ -106,8 +106,8 @@
   show heading.where(level: 1): it => {
     // pagebreak(weak: true)
     pad(
-      top: 4pt,
-      bottom: 7pt,
+      top: 8pt,
+      bottom: 14pt,
       align(
         center,
         text(size: 20pt, it),
@@ -116,18 +116,18 @@
   }
 
   show heading.where(level: 2): it => pad(
-    top: 3pt,
-    bottom: 2pt,
+    top: 6pt,
+    bottom: 4pt,
     text(size: 15pt, it),
   )
   show heading.where(level: 3): it => pad(
-    top: 3pt,
-    bottom: 2pt,
+    top: 6pt,
+    bottom: 4pt,
     text(size: 13pt, it),
   )
   show heading.where(level: 4): it => pad(
-    top: 1pt,
-    bottom: 1pt,
+    top: 2pt,
+    bottom: 2pt,
     text(size: 12pt, it),
   )
   show heading.where(level: 4): set heading(numbering: none)
@@ -169,8 +169,8 @@
     )
   }
 
-  show figure: it => pad(y: 1em, it)
-  show figure.caption: it => pad(top: 0.5em, text(0.95em, it))
+  show figure: it => pad(y: 2em, it)
+  show figure.caption: it => pad(top: 1.0em, text(0.95em, it))
   show math.equation.where(block: true): set block(spacing: 1.5em)
   set math.cases(gap: 0.8em)
   set math.mat(gap: 0.8em)
