@@ -64,6 +64,16 @@ echo '\n#include "articles/my_article/main.typ"' >> main.typ
 `#include` や `#set` などを使いたい場合は、`articles/my_article/main.typ` 内で使ってください。
 各記事の環境は独立なので、後ろの記事に設定が影響してしまうことはありません。
 
+> [!TIP]
+> 執筆に Visual Studio Code を使う場合は [`.vscode/extensions.json`](.vscode/extensions.json) にある拡張機能を導入すると便利です。
+> 
+> また、記事のプレビューも可能です。
+> 
+> 全体をプレビューしたい場合はリポジトリのルートディレクトリにある [`main.typ`](main.typ) を開き、右上にあるプレビューボタンを押してください。
+> 
+> 各記事ごとにプレビューしたい場合も同様に Typst ファイルを開き、右上にあるプレビューボタンを押してください。
+> このプレビューはホットリードが効きますから、執筆に便利です。
+
 ## コンパイル
 
 ### 全体のコンパイル
