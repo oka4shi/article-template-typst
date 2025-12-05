@@ -15,12 +15,12 @@
     block(
       width: 100%,
       breakable: true,
-      stroke: (paint: cmyk(0%, 0%, 0%, 80%), thickness: 0.3mm),
-      inset: (x: 4mm, y: 4mm),
+      stroke: (paint: cmyk(0%, 0%, 0%, 75%), thickness: 0.3mm),
+      inset: (x: 2.5mm, y: 2.5mm),
       outset: 0pt,
       above: 1.5em,
       below: 1.5em,
-      radius: 2mm,
+      radius: 1.5mm,
     )[ #it ]
   }
 
