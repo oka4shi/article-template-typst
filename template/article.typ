@@ -1,5 +1,5 @@
 #import "/template/init.typ": initialize
-#import "/template/codeblock.typ": show-line-numbers, init-codeblock
+#import "/template/codeblock.typ": init-codeblock
 
 #let author-block(name, authormark) = [
   #metadata(name) <author>
@@ -24,7 +24,6 @@
   show: initialize
 
   show: init-codeblock
-  show-line-numbers(true)
 
   heading(level: 1, title)
   author-block(author, author-mark)
