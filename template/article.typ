@@ -1,6 +1,5 @@
 #import "/template/init.typ": initialize
-#import "@preview/codly:1.3.0": codly-init, codly
-// #import "@preview/codelst:2.0.2": sourcecode
+#import "/template/codeblock.typ": show-line-numbers, init-codeblock
 
 #let author-block(name, authormark) = [
   #metadata(name) <author>
@@ -24,6 +23,7 @@
 ) = {
   show: initialize
 
+  show: init-codeblock
   show-line-numbers(true)
 
   heading(level: 1, title)

@@ -12,36 +12,16 @@
   body,
 ) = {
   show raw.where(block: true): it => {
-    set par(
-      leading: 0.9em,
-      spacing: 0.9em,
-      justify: false
-    )
-
-    show grid: set block(outset: (top: 0em, bottom: 0em), spacing: 0em)
-    line(length: 100%, stroke: 0.5pt)
-    grid(
-      columns: (100%, 100%),
-      column-gutter: -100%,
-      block(
-        width: 100%,
-        inset: 1em,
-        for (i, line) in it.text.trim("\n").split("\n").enumerate() {
-          box(
-            width: 0pt,
-            align(right, text(0.95em, luma(40%), context if show-line-numbers-state.get() { str(i + 1) } else { "" } + h(2em)))
-          )
-          hide(line)
-          linebreak()
-        }
-      ),
-      block(
-        width: 100%,
-        inset: (y: 1em),
-        it
-      ),
-    )
-    line(length: 100%, stroke: 0.5pt)
+    block(
+      width: 100%,
+      breakable: true,
+      stroke: (paint: cmyk(0%, 0%, 0%, 80%), thickness: 0.3mm),
+      inset: (x: 4mm, y: 4mm),
+      outset: 0pt,
+      above: 1.5em,
+      below: 1.5em,
+      radius: 2mm,
+    )[ #it ]
   }
 
   body
