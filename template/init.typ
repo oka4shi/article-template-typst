@@ -4,10 +4,11 @@
 #let has-initialized-state = state("has-initialized-state", false)
 
 #let initialize(body) = {
+  show: page-setting
+
   context if not has-initialized-state.get() {
 
     show: remove-cjk-break-space
-    show: page-setting
     show: body-setting
 
     body
