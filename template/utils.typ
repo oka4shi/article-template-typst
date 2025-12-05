@@ -153,6 +153,21 @@
     theme: "assets/quiet.tmTheme"
   )
 
+  show quote: set pad(0em)
+  show quote.where(): set block(below: 0mm, above: 0mm)
+    show quote.where(): it => {
+    block(
+      width: 100%,
+      stroke: (left: (paint: luma(45%), thickness: 0.3mm)),
+      inset: (left: 4mm, y: 2mm, right: 0mm),
+      outset: 0pt,
+      above: 1.5em,
+      below: 1.5em,
+      breakable: false,
+      text(fill: luma(30%), it)
+    )
+  }
+
   set footnote(numbering: sym.dagger + "1")
   show footnote: it => {
     set text(size: 1em)

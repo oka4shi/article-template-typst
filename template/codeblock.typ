@@ -5,7 +5,7 @@
     block(
       width: 100%,
       breakable: true,
-      stroke: (paint: cmyk(0%, 0%, 0%, 75%), thickness: 0.3mm),
+      stroke: (paint: luma(45%), thickness: 0.3mm),
       inset: (x: 2.5mm, y: 2.5mm),
       outset: 0pt,
       above: 1.5em,
