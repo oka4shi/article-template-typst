@@ -1,6 +1,5 @@
 #import "/template/init.typ": initialize
-#import "@preview/codly:1.3.0": codly-init, codly
-// #import "@preview/codelst:2.0.2": sourcecode
+#import "/template/codeblock.typ": init-codeblock
 
 #let author-block(name, authormark) = [
   #metadata(name) <author>
@@ -24,14 +23,7 @@
 ) = {
   show: initialize
 
-  codly(
-    zebra-fill: none,
-    fill: luma(95%),
-    // stroke: 1pt + luma(80%),
-    display-name: false,
-    inset: 0.3em,
-    number-placement: "outside",
-  )
+  show: init-codeblock
 
   heading(level: 1, title)
   author-block(author, author-mark)
