@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        dir: ${{ fromJson(needs.setup-compile.outputs.dirs) }}
+        dir: ${{ fromJson(needs.get-branch-info.outputs.dirs) }}
     steps:
       - name: checkout
         uses: actions/checkout@v4
