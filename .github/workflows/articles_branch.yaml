@@ -8,18 +8,27 @@ jobs:
   get-branch-info:
     runs-on: ubuntu-24.04
     steps:
+      - name: Get fetch depth
+        id: fetch_depth
+        run: echo "fetch_depth=$(( commits + 1 ))" >> $GITHUB_ENV
+        env:
+          commits: ${{ github.event.pull_request.commits }}
+
       - name: checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: ${{ steps.fetch_depth.outputs.fetch_depth }}
 
       - name: get branch info
         id: branch_info
         run: |
           # mainブランチとPullRequestのブランチの差分のうち、*/main.typに変更があるディレクトリ一覧を取得
-          DIRS=$(git diff --name-status --merge-base main "${{ github.head_ref }}" -- | awk '/\/main.typ/ { sub(/\/main.typ$/, "", $2); print $2 }')
+          DIRS=$(git diff --name-status "$from" "$to" -- | awk '/\/main.typ/ { sub(/\/main.typ$/, "", $2); print $2 }')
           # JSON形式にして出力
           echo "dirs=$(echo "$DIRS" | jq -R . | jq -s -c .)" >> $GITHUB_OUTPUT
+        env:
+          from: ${{ github.event.pull_request.base.sha }}
+          to: ${{ github.event.pull_request.head.sha }}
   compile-articles:
     needs: get-branch-info
     runs-on: ubuntu-24.04
