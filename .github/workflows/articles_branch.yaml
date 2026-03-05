@@ -26,8 +26,8 @@ jobs:
       - name: get branch info
         id: branch_info
         run: |
-          # Pull Requestに含まれるコミットの数だけ辿ってgitのdiffを取得し、*/main.typに変更があるディレクトリ一覧を抽出
-          DIRS=$(git diff --name-status HEAD~${{ github.event.pull_request.commits }} | awk '/\/main.typ/ { sub(/\/main.typ$/, "", $2); print $2 }')
+          # Pull Requestののbaseとheadのdiffを取得し、*/main.typに変更があるディレクトリ一覧を抽出
+          DIRS=$(git diff --name-status ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }} | awk '/\/main.typ/ { sub(/\/main.typ$/, "", $2); print $2 }')
           [ -n "$DIRS" ] && echo "has_changes=true" >> $GITHUB_OUTPUT
           # JSON形式にして出力
           echo "dirs=$(echo "$DIRS" | jq -R . | jq -s -c .)" >> $GITHUB_OUTPUT
