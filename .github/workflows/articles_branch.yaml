@@ -7,6 +7,8 @@ on:
 jobs:
   get-branch-info:
     runs-on: ubuntu-24.04
+    outputs:
+      dirs: ${{ steps.branch_info.outputs.dirs }}
     steps:
       - name: Get fetch depth
         id: get_fetch_depth
