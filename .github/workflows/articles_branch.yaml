@@ -25,12 +25,8 @@ jobs:
       - name: get branch info
         id: branch_info
         run: |
-          # コミットログを表示（デバッグ用）
-          git log --oneline
           # mainブランチとPullRequestのブランチの差分のうち、*/main.typに変更があるディレクトリ一覧を取得
-          echo $(git diff --name-status HEAD~${{ github.event.pull_request.commits }})
           DIRS=$(git diff --name-status HEAD~${{ github.event.pull_request.commits }} | awk '/\/main.typ/ { sub(/\/main.typ$/, "", $2); print $2 }')
-          echo $DIRS
           # JSON形式にして出力
           echo "dirs=$(echo "$DIRS" | jq -R . | jq -s -c .)" >> $GITHUB_OUTPUT
 
