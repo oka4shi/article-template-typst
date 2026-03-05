@@ -94,14 +94,14 @@ jobs:
           ARTIFACT_NAME=$(echo "${{ matrix.dir }}" | sed 's|^articles/||' | tr '/' '_')
           mv main.pdf "${ARTIFACT_NAME}.pdf"
 
-          echo "artifact_name=$ARTIFACT_NAME" >> $GITHUB_ENV
+          echo "artifact_name=$ARTIFACT_NAME" >> $GITHUB_OUTPUT
 
       - name: upload artifact
         id: upload_artifact
         uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.branch_info.outputs.artifact_name }}.pdf.zip
-          path: ${{ github.workspace }}/${{ matrix.dir }}/${{ steps.branch_info.outputs.article_name }}.pdf
+          path: ${{ github.workspace }}/${{ matrix.dir }}/${{ steps.compile_article.outputs.artifact_name }}.pdf
           retention-days: 7
 
   comment-artifact:
