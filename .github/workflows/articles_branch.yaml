@@ -100,7 +100,7 @@ jobs:
         id: upload_artifact
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ steps.branch_info.outputs.artifact_name }}.pdf.zip
+          name: ${{ steps.compile_article.outputs.artifact_name }}.pdf.zip
           path: ${{ github.workspace }}/${{ matrix.dir }}/${{ steps.compile_article.outputs.artifact_name }}.pdf
           retention-days: 7
 
@@ -126,7 +126,7 @@ jobs:
             artifact_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${id}"
             preview_url="https://word-coins.github.io/artifact-previewer/?owner=${owner}&repo=${repo}&artifact_id=${id}"
             
-            echo "- [${name}.pdf.zip](${artifact_url}) ([プレビュー](${preview_url}))" >> comment.md
+            echo "- [${name}](${artifact_url}) ([プレビュー](${preview_url}))" >> comment.md
           done
 
           # 4. 共通フッターの追加
