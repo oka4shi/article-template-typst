@@ -137,5 +137,5 @@ jobs:
           echo "有効期限 (おおよそ): ${expired_date}" >> comment.md
           echo "有効期限が切れた場合は [こちら](${job_url}) から「Re-run all jobs」を実行してください。" >> comment.md
 
-          gh pr comment "${{ github.event.pull_request.html_url }}" --body "${message}" --edit-last --create-if-none
+          gh pr comment "${{ github.event.pull_request.html_url }}" --body-file comment.md --edit-last --create-if-none
 
