@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-24.04
     outputs:
       dirs: ${{ steps.branch_info.outputs.dirs }}
+      has_changes: ${{ steps.branch_info.outputs.has_changes }}
     steps:
       - name: Get fetch depth
         id: get_fetch_depth
@@ -27,12 +28,14 @@ jobs:
         run: |
           # Pull Requestに含まれるコミットの数だけ辿ってgitのdiffを取得し、*/main.typに変更があるディレクトリ一覧を抽出
           DIRS=$(git diff --name-status HEAD~${{ github.event.pull_request.commits }} | awk '/\/main.typ/ { sub(/\/main.typ$/, "", $2); print $2 }')
+          [ -n "$DIRS" ] && echo "has_changes=true" >> $GITHUB_OUTPUT
           # JSON形式にして出力
           echo "dirs=$(echo "$DIRS" | jq -R . | jq -s -c .)" >> $GITHUB_OUTPUT
 
   compile-articles:
     needs: get-branch-info
     runs-on: ubuntu-24.04
+    if: needs.get-branch-info.outputs.has_changes
     strategy:
       matrix:
         dir: ${{ fromJson(needs.get-branch-info.outputs.dirs) }}
