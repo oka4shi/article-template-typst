@@ -92,4 +92,4 @@ echo '\n#include "articles/my_article/main.typ"' >> main.typ
 
 ## ライセンス
 
-TBD
+[MIT license](LICENSE)
