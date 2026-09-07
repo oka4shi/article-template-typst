@@ -1,18 +1,10 @@
-#let fonts = (
-  header: ("TeX Gyre Termes", "Noto Serif CJK JP"),
-  heading: ("TeX Gyre Termes", "Noto Sans CJK JP"),
-  body: ("TeX Gyre Termes", "Noto Serif CJK JP"),
-  raw: ("Source Code Pro", "Noto Sans CJK JP"),
-  page-number: "EB Garamond",
-)
+#import "/template/constants.typ": assets, fonts, jp-pattern
 
-#let jp-pattern = "[\p{scx:Han}\p{scx:Hira}\p{scx:Kana}]"
-
-#let pageno = (page-numbering, display-page, actucal-page) => {
+#let pageno = (page-numbering, display-page, actual-page) => {
   if (page-numbering == none) {
     none
   } else {
-    let isOdd = calc.odd(actucal-page)
+    let isOdd = calc.odd(actual-page)
     place(
       if isOdd { right } else { left },
       dx: 13mm * if (isOdd) { 1 } else { -1 },
@@ -150,12 +142,12 @@
   show raw: set text(font: fonts.raw)
   set raw(
     // コメントだけ色が薄いカラースキーム
-    theme: "assets/quiet.tmTheme"
+    theme: assets.rawtheme,
   )
 
   show quote: set pad(0em)
   show quote.where(): set block(below: 0mm, above: 0mm)
-    show quote.where(): it => {
+  show quote.where(): it => {
     block(
       width: 100%,
       stroke: (left: (paint: luma(45%), thickness: 0.3mm)),
@@ -164,7 +156,7 @@
       above: 1.5em,
       below: 1.5em,
       breakable: false,
-      text(fill: luma(30%), it)
+      text(fill: luma(30%), it),
     )
   }
 
@@ -179,8 +171,7 @@
     grid(
       columns: (auto, 1fr),
       gutter: 0.75em,
-      numbering(sym.dagger + "1", ..counter(footnote).at(it.note.location())),
-      it.note.body,
+      numbering(sym.dagger + "1", ..counter(footnote).at(it.note.location())), it.note.body,
     )
   }
 

@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches-ignore: ["articles/**"]
 
 jobs:
   make-article:
@@ -13,7 +11,7 @@ jobs:
 
     steps:
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Prepare Variables
         run: |
@@ -27,7 +25,7 @@ jobs:
           fi
 
       - name: Cache Typst
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         id: typst-cache
         with:
           path: /usr/local/bin/typst
@@ -47,7 +45,7 @@ jobs:
           rm typst.tar.xz
 
       - name: Cache Fonts
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         id: fonts-cache
         with:
           path: |
@@ -64,8 +62,9 @@ jobs:
         run: make compile
 
       - name: upload 
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: main.pdf
           path: main.pdf
-          retention-days: 3
+          retention-days: 7
+          archive: false
